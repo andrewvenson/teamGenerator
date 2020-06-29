@@ -148,11 +148,30 @@ const promptAnother = (answers) => {
       }
     });
     const html = render(employeeObjs);
-
-    console.log(html);
+    renderHtml(html);
   }
 };
 
+const renderHtml = (html) => {
+  //   console.log(OUTPUT_DIR);
+  fs.access(OUTPUT_DIR, function (error) {
+    if (error) {
+      console.log("Directory does not exist.");
+      console.log("Creating Directory...");
+      fs.mkdir(OUTPUT_DIR, function (err) {
+        if (err) {
+          console.log(err);
+        } else {
+          console.log(`${OUTPUT_DIR} successfully created.`);
+        }
+      });
+    } else {
+      console.log("Directory exists.");
+    }
+  });
+};
+
+// call entry point for application prompts
 entryPrompts();
 
 // After the user has input all employees desired, call the `render` function (required
