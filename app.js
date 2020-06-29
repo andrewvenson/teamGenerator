@@ -9,6 +9,7 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
+const { formatWithOptions } = require("util");
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
@@ -50,6 +51,7 @@ const entryPrompts = () => {
       team.push({
         id: id,
         name: answers.name,
+        email: answers.email,
         position: answers.position,
         attr: "",
       });
@@ -131,16 +133,16 @@ const promptAnother = (answers) => {
     team.forEach((tm, index) => {
       switch (tm.position) {
         case "Manager":
-          let newMan = new Manager(tm.name, tm.id, tm.position, tm.attr);
+          let newMan = new Manager(tm.name, tm.id, tm.email, tm.attr);
           employeeObjs.push(newMan);
           break;
         case "Engineer":
           console.log(tm);
-          let newEng = new Engineer(tm.name, tm.id, tm.position, tm.attr);
+          let newEng = new Engineer(tm.name, tm.id, tm.email, tm.attr);
           employeeObjs.push(newEng);
           break;
         case "Intern":
-          let newInt = new Intern(tm.name, tm.id, tm.position, tm.attr);
+          let newInt = new Intern(tm.name, tm.id, tm.email, tm.attr);
           employeeObjs.push(newInt);
           break;
         default:
@@ -163,10 +165,21 @@ const renderHtml = (html) => {
           console.log(err);
         } else {
           console.log(`${OUTPUT_DIR} successfully created.`);
+          writeHtml(html);
         }
       });
     } else {
-      console.log("Directory exists.");
+      writeHtml(html);
+    }
+  });
+};
+
+const writeHtml = (html) => {
+  fs.writeFile(outputPath, html, (err) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log("team.html successfully written");
     }
   });
 };
