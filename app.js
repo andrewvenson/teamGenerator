@@ -122,12 +122,34 @@ const teamAttr = (attr) => {
 
 // prompt for another team member
 const promptAnother = (answers) => {
-  console.log(team);
+  //   console.log(team);
   if (answers.again === "Yes") {
     entryPrompts();
   } else {
     // console.log(team);
-    render(team);
+    let employeeObjs = [];
+    team.forEach((tm, index) => {
+      switch (tm.position) {
+        case "Manager":
+          let newMan = new Manager(tm.name, tm.id, tm.position, tm.attr);
+          employeeObjs.push(newMan);
+          break;
+        case "Engineer":
+          console.log(tm);
+          let newEng = new Engineer(tm.name, tm.id, tm.position, tm.attr);
+          employeeObjs.push(newEng);
+          break;
+        case "Intern":
+          let newInt = new Intern(tm.name, tm.id, tm.position, tm.attr);
+          employeeObjs.push(newInt);
+          break;
+        default:
+          null;
+      }
+    });
+    const html = render(employeeObjs);
+
+    console.log(html);
   }
 };
 
