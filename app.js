@@ -9,6 +9,7 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
+const { formatWithOptions } = require("util");
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
@@ -163,10 +164,21 @@ const renderHtml = (html) => {
           console.log(err);
         } else {
           console.log(`${OUTPUT_DIR} successfully created.`);
+          writeHtml(html);
         }
       });
     } else {
-      console.log("Directory exists.");
+      writeHtml(html);
+    }
+  });
+};
+
+const writeHtml = (html) => {
+  fs.writeFile(outputPath, html, (err) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log("team.html successfully written");
     }
   });
 };
