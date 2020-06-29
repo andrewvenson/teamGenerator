@@ -19,12 +19,23 @@
         box-shadow: 2px 8px 16px lightgray;
       }
       .card-header {
-        background-color: #00fa9a;
+        background-color: #20b2aa;
         color: white;
       }
       .team-heading {
         background-color: #20b2aa;
         color: white;
+      }
+
+      .employee-card {
+        box-shadow: 2px 8px 16px lightgray;
+        margin: auto;
+      }
+
+      .card {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        width: 300px;
       }
     </style>
   </head>
@@ -39,9 +50,7 @@
     </div>
     <div class="container">
       <div class="row">
-        <div class="team-area col-12 d-flex justify-content-center">
-          {{ team }}
-        </div>
+        {{ team }}
       </div>
     </div>
   </body>

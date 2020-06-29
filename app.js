@@ -51,6 +51,7 @@ const entryPrompts = () => {
       team.push({
         id: id,
         name: answers.name,
+        email: answers.email,
         position: answers.position,
         attr: "",
       });
@@ -132,16 +133,16 @@ const promptAnother = (answers) => {
     team.forEach((tm, index) => {
       switch (tm.position) {
         case "Manager":
-          let newMan = new Manager(tm.name, tm.id, tm.position, tm.attr);
+          let newMan = new Manager(tm.name, tm.id, tm.email, tm.attr);
           employeeObjs.push(newMan);
           break;
         case "Engineer":
           console.log(tm);
-          let newEng = new Engineer(tm.name, tm.id, tm.position, tm.attr);
+          let newEng = new Engineer(tm.name, tm.id, tm.email, tm.attr);
           employeeObjs.push(newEng);
           break;
         case "Intern":
-          let newInt = new Intern(tm.name, tm.id, tm.position, tm.attr);
+          let newInt = new Intern(tm.name, tm.id, tm.email, tm.attr);
           employeeObjs.push(newInt);
           break;
         default:
