@@ -37,6 +37,14 @@ const entryPrompts = () => {
         type: "input",
         message: "Enter team member's email: ",
         name: "email",
+	validate: (answer) => {
+		if(answer.match(/[a-z]*[@][a-z]+[.][a-z]+/)){
+			
+			return true;
+		}else{
+			return false;
+		}
+	}
       },
       {
         type: "list",
@@ -68,7 +76,14 @@ const positionPrompts = () => {
           {
             name: "number",
             type: "input",
-            message: "Office #: ",
+            message: "Office Number (###-###-####): ",
+	    validate: (answer) => {
+		    if(answer.toString().match(/[0-9]{3}.[0-9]{3}.[0-9]{4}/)){
+		    	return true;
+		    }else{
+			return false;
+		    }
+	    }
           },
           addAnother,
         ])
