@@ -37,7 +37,7 @@ osl-3.0
 ## Badges
 
 <img src="https://img.shields.io/badge/cool-codemonk9-green" alt="cool" />
-<img src="https://img.shields.io/badge/wow-repoReadmeGen-blue" alt="wow" />
+<img src="https://img.shields.io/badge/team-generator-blue" alt="wow" />
 
 ## Contributing
 
